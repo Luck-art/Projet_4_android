@@ -79,14 +79,18 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 		View imageTrash;
 		TextView meetingName;
 		TextView mailName;
+		TextView topicName;
+		TextView hourName;
 
 		public ListHolder(@NonNull View itemView) {
 			super(itemView);
 
 			imageName = itemView.findViewById(R.id.iconeMeeting);
 			imageTrash = itemView.findViewById(R.id.buttonTrash);
-			meetingName = itemView.findViewById(R.id.textMeeting);
+			meetingName = itemView.findViewById(R.id.textPLace);
+			topicName = itemView.findViewById(R.id.textTopic);
 			mailName = itemView.findViewById(R.id.textMail);
+			hourName = itemView.findViewById(R.id.textHour);
 		}
 
 		void setDetailsMeeting(Meeting meeting, int position) {
@@ -97,13 +101,17 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 				color = Color.parseColor("#AA7845");
 			} else if (meeting.getPlace().equals(("Luigi"))) {
 				color = Color.parseColor("#BC1511");
-			} else  {
+			} else if(meeting.getPlace().equals(("Warrio"))) {
+				color = Color.parseColor("#FF4523");
+			} else {
 				color = Color.parseColor("#DDD879");
 			}
 
 			imageName.setColorFilter(color);
-			meetingName.setText(meeting.getTopic());
+			meetingName.setText(meeting.getPlace());
 			mailName.setText(meeting.getMail());
+			topicName.setText(meeting.getTopic());
+			hourName.setText(meeting.getHour());
 			imageTrash.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

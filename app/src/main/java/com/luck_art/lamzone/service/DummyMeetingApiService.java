@@ -31,8 +31,21 @@ public class DummyMeetingApiService implements MeetingApiService {
 	 * @param meeting
 	 */
 	@Override
-	public void createMeeting(Meeting meeting) {
-		meetings.add(meeting);
+	public boolean createMeeting(Meeting meeting) {
+
+
+
+		for (Meeting m : meetings) {
+			if (m.place.equals(meeting.place) && m.hour.equals(meeting.hour)) {
+				return false;
+			} else {
+				meetings.add(meeting);
+				return true;
+			}
+
+		}
+
+		return true;
 	}
 
 }

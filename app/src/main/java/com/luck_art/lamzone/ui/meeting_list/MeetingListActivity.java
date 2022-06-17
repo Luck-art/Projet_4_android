@@ -31,8 +31,9 @@ public class MeetingListActivity extends AppCompatActivity {
 	RecyclerView list;
 	View buttonAddMeeting;
 
-	ArrayList<Meeting> listMeetings = new ArrayList<>();
 
+
+	MeetingListAdapter adapter = new MeetingListAdapter(); // On crée une instance de MeetingListAdapter
 
 	@Override
 	protected  void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,7 @@ public class MeetingListActivity extends AppCompatActivity {
 
 		list.setLayoutManager(new LinearLayoutManager(this));
 
-		recyclerMeetings(); // on appelle la méthode recyclerMeetings
 
-		MeetingListAdapter adapter = new MeetingListAdapter(); // On crée une instance de MeetingListAdapter
-
-		adapter.SetItems(listMeetings);
 
 
 		list.setAdapter(adapter); // On appelle l'adapter
@@ -57,18 +54,20 @@ public class MeetingListActivity extends AppCompatActivity {
 
 			@Override
 			public void onAdapterItemClickListener(Meeting meeting , int position) {
-				listMeetings.remove(meeting);
-				adapter.SetItems(listMeetings);
+				MeetingApiService mApiService = DI.getMeetingApiService();
+				mApiService.deleteMeeting(meeting);
+				adapter.SetItems(mApiService.getMeetings());
 			}
 		});
 
+		// On écoute le clic sur bouton d'ajout d'une réunion pour pouvoir ensuite changer d'écran lors du clic
+
 		buttonAddMeeting.setOnClickListener(new View.OnClickListener() {
 
-			MeetingApiService mApiService;
+
 
 			@Override
 			public void onClick(View v) {
-				//TODO appeller le deuxième écran (fragment)
 
 				Intent intent = new Intent(MeetingListActivity.this, AddMeetingActivity.class);
 				startActivity(intent);
@@ -77,12 +76,15 @@ public class MeetingListActivity extends AppCompatActivity {
 
 	}
 
-
-
-	private void recyclerMeetings() {
-		listMeetings.add(new Meeting(0,"15h30","Mario","ABC","blabla@gmail.com"));
-		listMeetings.add(new Meeting(1,"17h30","Luigi","asd","luigi@gmail.com"));
+	@Override
+	protected void onResume() { // On récupère les informations des champs de l'écran de création d'une réunion
+		super.onResume();
+		MeetingApiService mApiService = DI.getMeetingApiService();
+		adapter.SetItems(mApiService.getMeetings());
 	}
+
+
+
 
 
 }

@@ -5,11 +5,12 @@ import java.util.Objects;
 
 public class Meeting implements Serializable {
 
+
 	private long id;
 
-	private String hour;
+	public String hour;
 
-	private String place;
+	public String place;
 
 	private String topic;
 
@@ -24,7 +25,7 @@ public class Meeting implements Serializable {
 	 * @param mail
      */
 
-	public Meeting(long id, String hour, String place,
+	public Meeting(long id,String place, String hour,
 	                 String topic, String mail) {
 		this.id = id;
 		this.hour = hour;
@@ -52,7 +53,7 @@ public class Meeting implements Serializable {
 		return place;
 	}
 
-	public void setPLace(String place) {
+	public void setPLace() {
 		this.place = place;
 	}
 

@@ -20,13 +20,13 @@
         android:layout_height="52dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
-        android:text="Créez votre réunion"
-        android:textAlignment="center"
-        android:textColor="#F3F1F1"
         android:shadowColor="@color/text_shadow"
         android:shadowDx="-5"
         android:shadowDy="-5"
         android:shadowRadius="1"
+        android:text="Créez votre réunion"
+        android:textAlignment="center"
+        android:textColor="#F3F1F1"
         android:textIsSelectable="false"
         android:textSize="34sp"
         app:flow_horizontalAlign="center"
@@ -34,22 +34,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardContainer"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="#E6DFDF"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="75dp"
+            android:textSize="17dp"
+            android:hint="Lieu de la réunion" />
+
+        <Spinner
             android:id="@+id/place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Lieu de la réunion" />
+            android:layout_marginTop="40dp"
+            android:inputType="text" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
@@ -58,13 +68,14 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="58dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/cardContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/hour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Heure de la réunion" />
+            android:hint="Heure de la réunion"
+            android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +91,8 @@
             android:id="@+id/topic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sujet de la réunion" />
+            android:hint="Sujet de la réunion"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +108,8 @@
             android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -105,8 +118,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginBottom="40dp"
-        android:text="Programmer"
+        android:clickable="true"
 
+        android:text="Programmer"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 
