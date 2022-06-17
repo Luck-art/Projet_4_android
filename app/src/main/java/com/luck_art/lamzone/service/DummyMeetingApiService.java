@@ -38,13 +38,9 @@ public class DummyMeetingApiService implements MeetingApiService {
 		for (Meeting m : meetings) {
 			if (m.place.equals(meeting.place) && m.hour.equals(meeting.hour)) {
 				return false;
-			} else {
-				meetings.add(meeting);
-				return true;
 			}
-
 		}
-
+		meetings.add(meeting);
 		return true;
 	}
 
