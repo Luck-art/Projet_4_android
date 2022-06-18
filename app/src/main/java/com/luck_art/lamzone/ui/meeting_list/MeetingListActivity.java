@@ -1,7 +1,10 @@
 package com.luck_art.lamzone.ui.meeting_list;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,6 +40,11 @@ public class MeetingListActivity extends AppCompatActivity {
 
 	@Override
 	protected  void onCreate(Bundle savedInstanceState) {
+
+
+		getSupportActionBar().setTitle("Ma réu");
+
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.meeting_recycler_list);
 
