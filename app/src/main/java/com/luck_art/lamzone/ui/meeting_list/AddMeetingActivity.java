@@ -69,6 +69,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 			NamePlace.add("Mario");
 			NamePlace.add("Luigi");
 			NamePlace.add("Warrio");
+
 			// Create an ArrayAdapter using the string array and a default spinner layout
 			ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
 					android.R.layout.simple_spinner_item, NamePlace);

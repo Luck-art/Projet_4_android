@@ -1,18 +1,10 @@
 package com.luck_art.lamzone.ui.meeting_list;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +26,15 @@ public class MeetingListActivity extends AppCompatActivity {
 	RecyclerView list;
 	View buttonAddMeeting;
 
+	// Filtre des salles
+
+	View filterMario;
+	View filterLuigi;
+	View filterWarrio;
+	View filterClear;
+
+	String namePlaceFilter = "";
+
 
 
 	MeetingListAdapter adapter = new MeetingListAdapter(); // On crée une instance de MeetingListAdapter
@@ -50,6 +51,11 @@ public class MeetingListActivity extends AppCompatActivity {
 
 		list = findViewById(R.id.recycler_meeting_list);
 		buttonAddMeeting = findViewById(R.id.buttonAddMeeting);
+		filterMario = findViewById(R.id.place);
+		filterLuigi = findViewById(R.id.place);
+		filterWarrio = findViewById(R.id.place);
+		filterClear = findViewById(R.id.place);
+
 
 		list.setLayoutManager(new LinearLayoutManager(this));
 
@@ -82,6 +88,38 @@ public class MeetingListActivity extends AppCompatActivity {
 			}
 		});
 
+		filterMario.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				namePlaceFilter = "Mario";
+				updatePlaceList();
+			}
+		});
+
+		filterLuigi.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				namePlaceFilter = "Luigi";
+				updatePlaceList();
+			}
+		});
+
+		filterWarrio.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				namePlaceFilter = "Warrio";
+				updatePlaceList();
+			}
+		});
+
+		filterClear.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				namePlaceFilter = "Clear";
+				updatePlaceList();
+			}
+		});
+
 	}
 
 	@Override
@@ -90,6 +128,27 @@ public class MeetingListActivity extends AppCompatActivity {
 		MeetingApiService mApiService = DI.getMeetingApiService();
 		adapter.SetItems(mApiService.getMeetings());
 	}
+
+	private void updatePlaceList() {
+		MeetingApiService meetingApiService = DI.getMeetingApiService();
+		List<Meeting> allMeetings = meetingApiService.getMeetings();
+		List<Meeting> meetingsFilteredByRoom = filterByRoom(allMeetings, namePlaceFilter);
+		adapter.SetItems(meetingsFilteredByRoom);
+	}
+
+	private List<Meeting> filterByRoom(List<Meeting> allMeetings, String namePlaceFilter) {
+		List<Meeting> filteredMeetings = new ArrayList<>();
+		for (Meeting meeting : allMeetings) {
+			if (namePlaceFilter == null || meeting.place.equals(namePlaceFilter)) {
+				filteredMeetings.add(meeting);
+			} else {
+
+			}
+		}
+		return filteredMeetings;
+	}
+
+
 
 
 
