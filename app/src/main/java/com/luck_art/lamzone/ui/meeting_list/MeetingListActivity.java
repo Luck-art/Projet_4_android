@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.luck_art.lamzone.R;
 import com.luck_art.lamzone.di.DI;
+import com.luck_art.lamzone.filter.Filter;
 import com.luck_art.lamzone.model.Meeting;
 import com.luck_art.lamzone.service.MeetingApiService;
 
@@ -125,7 +126,7 @@ public class MeetingListActivity extends AppCompatActivity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					hourFilter = hourChoice[which];
-					updateHourList();
+					updatePlaceList();
 				}
 			});
 			builder.show();
@@ -134,6 +135,7 @@ public class MeetingListActivity extends AppCompatActivity {
 
 		if (id == R.id.clear_filter) {
 			namePlaceFilter = null;
+			hourFilter = null;
 			updatePlaceList();
 			return true;
 		}
@@ -151,30 +153,13 @@ public class MeetingListActivity extends AppCompatActivity {
 	private void updatePlaceList() {
 		MeetingApiService meetingApiService = DI.getMeetingApiService();
 		List<Meeting> allMeetings = meetingApiService.getMeetings();
-		List<Meeting> meetingsFilteredByRoom = filterByRoom(allMeetings, namePlaceFilter);
-		adapter.SetItems(meetingsFilteredByRoom);
+		List<Meeting> meetingsFilteredByRoom = Filter.filterByRoom(allMeetings, namePlaceFilter);
+		List<Meeting> meetingsFilteredByTime = Filter.filterByTime(meetingsFilteredByRoom, hourFilter);
+		adapter.SetItems(meetingsFilteredByTime);
 	}
 
-	private void updateHourList() {
-		MeetingApiService meetingApiService = DI.getMeetingApiService();
-		List<Meeting> allMeetings = meetingApiService.getMeetings();
-		List<Meeting> meetingsFilteredByRoom = filterByRoom(allMeetings, hourFilter);
-		adapter.SetItems(meetingsFilteredByRoom);
-	}
 
-	private List<Meeting> filterByRoom(List<Meeting> allMeetings, String namePlaceFilter) {
-		List<Meeting> filteredMeetings = new ArrayList<>();
-		for (Meeting meeting : allMeetings) {
-			if (namePlaceFilter == null || meeting.place.equals(namePlaceFilter)) {
-				filteredMeetings.add(meeting);
-			}else if (hourFilter == null || meeting.hour.equals(hourFilter)) {
-				filteredMeetings.add(meeting);
-			} else {
 
-			}
-		}
-		return filteredMeetings;
-	}
 
 
 

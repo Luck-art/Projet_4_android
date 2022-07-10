@@ -108,10 +108,22 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 			}
 
 			imageName.setColorFilter(color);
-			meetingName.setText(meeting.getPlace());
-			mailName.setText(meeting.getMail());
+			meetingName.setText(meeting.getPlace() + " -");
+
+
+			String emailsString = "";
+			for (int i = 0; i < meeting.getMail().size() ; i++) {
+				emailsString += meeting.getMail().get(i);
+				if (i != meeting.getMail().size() -1) {
+					emailsString += ", " ;
+				}
+			}
+
+			mailName.setText(emailsString);
+
+
 			topicName.setText(meeting.getTopic());
-			hourName.setText(meeting.getHour());
+			hourName.setText(meeting.getHour() + " -");
 			imageTrash.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

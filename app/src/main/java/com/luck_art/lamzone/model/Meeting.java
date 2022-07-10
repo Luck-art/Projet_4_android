@@ -1,6 +1,7 @@
 package com.luck_art.lamzone.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class Meeting implements Serializable {
@@ -14,7 +15,7 @@ public class Meeting implements Serializable {
 
 	private String topic;
 
-	private String mail;
+	private List<String> mails;
 
 
 	/** Constructor
@@ -22,16 +23,16 @@ public class Meeting implements Serializable {
      * @param hour
 	 * @param place
 	 * @param topic
-	 * @param mail
+	 * @param mails
      */
 
-	public Meeting(long id,String place, String hour,
-	                 String topic, String mail) {
+	public Meeting(long id, String place, String hour,
+	               String topic, List<String> mails) {
 		this.id = id;
 		this.hour = hour;
 		this.place = place;
 		this.topic = topic;
-		this.mail = mail;
+		this.mails = mails;
 	}
 
 
@@ -65,12 +66,12 @@ public class Meeting implements Serializable {
 		this.topic = topic;
 	}
 
-	public String getMail() {
-		return mail;
+	public List<String> getMail() {
+		return mails;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMail(List<String> mails) {
+		this.mails = mails;
 	}
 
 

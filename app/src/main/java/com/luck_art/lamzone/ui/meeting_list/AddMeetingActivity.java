@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +15,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.luck_art.lamzone.R;
 import com.luck_art.lamzone.di.DI;
 import com.luck_art.lamzone.model.Meeting;
 import com.luck_art.lamzone.service.MeetingApiService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -40,6 +40,12 @@ public class AddMeetingActivity extends AppCompatActivity {
 
 		private MeetingApiService mApiService;
 
+
+		View boutonSaveEmail;
+		LinearLayout emailsGroup;
+
+		private List<String> emailsEntrees = new ArrayList<>();
+
 		@SuppressLint("WrongViewCast")
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class AddMeetingActivity extends AppCompatActivity {
 			topic = findViewById(R.id.topic);
 			mail = findViewById(R.id.mail);
 			register_meeting = findViewById(R.id.register_meeting);
+			boutonSaveEmail = findViewById(R.id.saveEmail);
+			emailsGroup = findViewById(R.id.emailsList);
 
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			mApiService = DI.getMeetingApiService();
@@ -78,6 +86,20 @@ public class AddMeetingActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
 			place.setAdapter(adapter);
 
+
+			boutonSaveEmail.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					final String textMail = mail.getText().toString();
+					emailsEntrees.add(textMail);
+					//puis je remet a 0 le champ email pour enlever le texte présent
+					mail.getText().clear();
+
+					Chip chip = new Chip(AddMeetingActivity.this);
+					chip.setText(textMail);
+					emailsGroup.addView(chip);
+				}
+			});
 		}
 
 		@Override
@@ -111,9 +133,9 @@ public class AddMeetingActivity extends AppCompatActivity {
 				Snackbar.make(this.topic, "Veuillez mentionner un sujet pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
 			}
-			String mail = this.mail.getText().toString().trim();
-			if (mail.equals("")) {
-				Snackbar.make(this.mail, "Veuillez mentionner une/des adresse(s) mail(s) pour votre réunion", Snackbar.LENGTH_LONG).show();
+
+			if (emailsEntrees.isEmpty()) {
+				Snackbar.make(this.topic, "Veuillez mentionner une/des adresse(s) mail(s) pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
 			}
 			Meeting meeting = new Meeting(
@@ -121,7 +143,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 					place,
 					hour,
 					topic,
-					mail
+					emailsEntrees
 			);
 			boolean succesMeetingCreation = mApiService.createMeeting(meeting);
 			if (succesMeetingCreation) {
