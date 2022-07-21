@@ -44,4 +44,14 @@ public class DummyMeetingApiService implements MeetingApiService {
 		return true;
 	}
 
+	@Override
+	public List<Meeting> filterByRoom() {
+		return meetings;
+	}
+
+	@Override
+	public List<Meeting> filterByTime() {
+		return meetings;
+	}
+
 }

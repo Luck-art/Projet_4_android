@@ -19,5 +19,8 @@ public class DI {
     }
 
 
+    public static MeetingApiService getNewInstanceApiService() {
+        return new DummyMeetingApiService();
+    }
 
 }

@@ -24,4 +24,11 @@ public interface MeetingApiService {
 	 */
 	boolean createMeeting(Meeting meeting);
 
+
+
+
+
+	List<Meeting> filterByTime();
+
+	List<Meeting> filterByRoom();
 }

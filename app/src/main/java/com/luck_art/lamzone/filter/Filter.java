@@ -13,8 +13,6 @@ public class Filter {
 		for (Meeting meeting : allMeetings) {
 			if (namePlaceFilter == null || meeting.place.equals(namePlaceFilter)) {
 				filteredMeetings.add(meeting);
-			} else {
-
 			}
 		}
 		return filteredMeetings;
@@ -25,8 +23,6 @@ public class Filter {
 		for (Meeting meeting : allMeetings) {
 			if (hourFilter == null || meeting.hour.equals(hourFilter)) {
 				filteredMeetings.add(meeting);
-			} else {
-
 			}
 		}
 		return filteredMeetings;
