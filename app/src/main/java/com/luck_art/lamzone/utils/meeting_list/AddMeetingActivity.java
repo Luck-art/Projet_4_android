@@ -1,4 +1,4 @@
-package com.luck_art.lamzone.ui.meeting_list;
+package com.luck_art.lamzone.utils.meeting_list;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,7 +24,6 @@ import com.luck_art.lamzone.model.Meeting;
 import com.luck_art.lamzone.service.MeetingApiService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 

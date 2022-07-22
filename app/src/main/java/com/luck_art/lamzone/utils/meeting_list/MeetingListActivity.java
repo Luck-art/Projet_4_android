@@ -1,4 +1,4 @@
-package com.luck_art.lamzone.ui.meeting_list;
+package com.luck_art.lamzone.utils.meeting_list;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import com.luck_art.lamzone.filter.Filter;
 import com.luck_art.lamzone.model.Meeting;
 import com.luck_art.lamzone.service.MeetingApiService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // Crétion de l'interface d'écoute du clic

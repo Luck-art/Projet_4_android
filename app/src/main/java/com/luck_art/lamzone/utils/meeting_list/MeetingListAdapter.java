@@ -1,6 +1,5 @@
-package com.luck_art.lamzone.ui.meeting_list;
+package com.luck_art.lamzone.utils.meeting_list;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;

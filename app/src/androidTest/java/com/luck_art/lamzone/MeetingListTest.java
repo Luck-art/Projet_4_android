@@ -3,6 +3,7 @@ package com.luck_art.lamzone;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static com.luck_art.lamzone.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -12,7 +13,8 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.luck_art.lamzone.ui.meeting_list.MeetingListActivity;
+import com.luck_art.lamzone.utils.DeleteViewAction;
+import com.luck_art.lamzone.utils.meeting_list.MeetingListActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

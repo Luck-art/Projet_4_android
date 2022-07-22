@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lamzone">
         <activity
-            android:name=".ui.meeting_list.MeetingListActivity"
+            android:name=".utils.meeting_list.MeetingListActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.meeting_list.AddMeetingActivity" />
+        <activity android:name=".utils.meeting_list.AddMeetingActivity" />
     </application>
 
 </manifest>
