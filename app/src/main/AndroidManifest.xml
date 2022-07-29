@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lamzone">
+
         <activity
             android:name=".utils.meeting_list.MeetingListActivity"
             android:exported="true"

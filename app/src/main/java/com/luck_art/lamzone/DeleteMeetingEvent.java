@@ -5,7 +5,7 @@ import com.luck_art.lamzone.model.Meeting;
 public class DeleteMeetingEvent {
 
 	/**
-	 * Neighbour to delete
+	 * Meeting to delete
 	 */
 	public Meeting meeting;
 

@@ -1,26 +1,23 @@
-private final List<Neighbour> mNeighbours;
-    private final boolean mFavorites;
+private final List<Meeting> mMeetings;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean favorites) {
-        mNeighbours = items;
-        mFavorites = favorites;
+    public MyMeetingrRecyclerViewAdapter(List<Meeting> items) {
+        mMeetings = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_neighbour, parent, false);
+                .inflate(R.layout.FirstFragment, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Neighbour neighbour = mNeighbours.get(position);
-        holder.mNeighbourName.setText(neighbour.getName());
-        Glide.with(holder.mNeighbourAvatar.getContext())
-                .load(neighbour.getAvatarUrl())
+        Meeting meeting = mMeetings.get(position);
+        holder.mMeetingName.setText(meeting.getName());
+        Glide.with(holder.mMeetingAvatar.getContext())
+                .load(meeting.getAvatarUrl())
                 .apply(RequestOptions.circleCropTransform())
-                .into(holder.mNeighbourAvatar);
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +52,6 @@ private final List<Neighbour> mNeighbours;
         @BindView(R.id.item_list_delete_button)
         public ImageButton mDeleteButton;
 
-        public ViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
+
+
     }
