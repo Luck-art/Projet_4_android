@@ -31,4 +31,6 @@ public interface MeetingApiService {
 	List<Meeting> filterByTime();
 
 	List<Meeting> filterByRoom();
+
+	void clear();
 }

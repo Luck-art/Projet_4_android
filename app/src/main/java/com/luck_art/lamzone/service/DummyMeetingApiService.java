@@ -54,4 +54,9 @@ public class DummyMeetingApiService implements MeetingApiService {
 		return meetings;
 	}
 
+	@Override
+	public void clear(){
+		meetings.clear();
+	}
+
 }

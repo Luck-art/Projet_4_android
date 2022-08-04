@@ -87,9 +87,16 @@ public class AddMeetingActivity extends AppCompatActivity {
 
 
 			boutonSaveEmail.setOnClickListener(new View.OnClickListener() {
+
+
+				private View textMail;
+
 				@Override
 				public void onClick(View view) {
 					final String textMail = mail.getText().toString();
+					if (textMail.isEmpty()) {
+						return;
+					}
 					emailsEntrees.add(textMail);
 					//puis je remet a 0 le champ email pour enlever le texte présent
 					mail.getText().clear();

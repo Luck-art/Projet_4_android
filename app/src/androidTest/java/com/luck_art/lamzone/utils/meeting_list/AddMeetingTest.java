@@ -27,6 +27,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.luck_art.lamzone.R;
+import com.luck_art.lamzone.di.DI;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -45,24 +46,16 @@ public class AddMeetingTest {
 
 	@Test
 	public void addMeetingTest() {
+
+		DI.getMeetingApiService().clear();
+
 		ViewInteraction floatingActionButton = onView(
 				allOf(withId(R.id.buttonAddMeeting),
-						childAtPosition(
-								childAtPosition(
-										withId(android.R.id.content),
-										0),
-								1),
 						isDisplayed()));
 		floatingActionButton.perform(click());
 
 		ViewInteraction appCompatSpinner = onView(
 				allOf(withId(R.id.place),
-						childAtPosition(
-								allOf(withId(R.id.cardContainer),
-										childAtPosition(
-												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-												2)),
-								1),
 						isDisplayed()));
 		appCompatSpinner.perform(click());
 
@@ -75,73 +68,36 @@ public class AddMeetingTest {
 
 		ViewInteraction textInputEditText = onView(
 				allOf(withId(R.id.hour),
-						childAtPosition(
-								childAtPosition(
-										withId(R.id.textInputLayout2),
-										0),
-								0),
 						isDisplayed()));
 		textInputEditText.perform(replaceText("11"), closeSoftKeyboard());
 
 		ViewInteraction textInputEditText2 = onView(
 				allOf(withId(R.id.topic),
-						childAtPosition(
-								childAtPosition(
-										withId(R.id.textInputLayout3),
-										0),
-								0),
 						isDisplayed()));
 		textInputEditText2.perform(replaceText("meeting"), closeSoftKeyboard());
 
 		ViewInteraction textInputEditText3 = onView(
 				allOf(withId(R.id.mail),
-						childAtPosition(
-								childAtPosition(
-										withId(R.id.textInputLayout4),
-										0),
-								0),
 						isDisplayed()));
 		textInputEditText3.perform(replaceText("mario@gmail.com"), closeSoftKeyboard());
 
 		ViewInteraction materialTextView = onView(
 				allOf(withId(R.id.saveEmail),
-						childAtPosition(
-								allOf(withId(R.id.textInputLayout4),
-										childAtPosition(
-												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-												5)),
-								1),
 						isDisplayed()));
 		materialTextView.perform(click());
 
 		ViewInteraction textInputEditText4 = onView(
 				allOf(withId(R.id.mail),
-						childAtPosition(
-								childAtPosition(
-										withId(R.id.textInputLayout4),
-										0),
-								0),
 						isDisplayed()));
 		textInputEditText4.perform(replaceText("luigi@gmail.com"), closeSoftKeyboard());
 
 		ViewInteraction materialTextView2 = onView(
 				allOf(withId(R.id.saveEmail),
-						childAtPosition(
-								allOf(withId(R.id.textInputLayout4),
-										childAtPosition(
-												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-												5)),
-								1),
 						isDisplayed()));
 		materialTextView2.perform(click());
 
 		ViewInteraction materialButton = onView(
 				allOf(withId(R.id.register_meeting), withText("Programmer"),
-						childAtPosition(
-								childAtPosition(
-										withId(android.R.id.content),
-										0),
-								7),
 						isDisplayed()));
 		materialButton.perform(click());
 
