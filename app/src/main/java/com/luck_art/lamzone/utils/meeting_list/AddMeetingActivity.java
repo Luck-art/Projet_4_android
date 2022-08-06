@@ -29,8 +29,6 @@ import java.util.List;
 
 public class AddMeetingActivity extends AppCompatActivity {
 
-	public static final  String EXTRA_MESSAGE = "com.luck_art.lamzone.ui.meeting_list.MESSAGE";
-
 		Spinner place;
 		TextInputEditText hour;
 		TextInputEditText topic;
@@ -158,20 +156,6 @@ public class AddMeetingActivity extends AppCompatActivity {
 				Snackbar.make(this.place, "Cette salle n'est pas disponible pour cette heure", Snackbar.LENGTH_LONG).show();
 			}
 
-		}
-
-		/**
-		 * Generate a random image. Useful to mock image picker
-		 * @return String
-		 */
-
-		/**
-		 * Used to navigate to this activity
-		 * @param activity
-		 */
-		public static void navigate(FragmentActivity activity) {
-			Intent intent = new Intent(activity, AddMeetingActivity.class);
-			ActivityCompat.startActivity(activity, intent, null);
 		}
 
 }

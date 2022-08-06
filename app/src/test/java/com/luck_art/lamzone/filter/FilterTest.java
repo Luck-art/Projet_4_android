@@ -65,6 +65,26 @@ public class FilterTest {
 		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
+		List<Meeting> ResumeMario = Filter.filterByTime(meetingsTestList, "11");
+		assertFalse(ResumeMario.contains(meetingToCreateTwo));
+		assertTrue(ResumeMario.contains(meetingToCreateOne));
+		assertFalse(ResumeMario.contains(meetingToCreateThree));
+
+	}
+
+
+	@Test
+	public void testFilterByTime_null() {
+
+		List<Meeting> meetingsTestList = new ArrayList<>();
+
+		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		meetingsTestList.add(meetingToCreateOne);
+		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		meetingsTestList.add(meetingToCreateTwo);
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		meetingsTestList.add(meetingToCreateThree);
+
 		List<Meeting> ResumeMario = Filter.filterByTime(meetingsTestList, null);
 		assertTrue(ResumeMario.contains(meetingToCreateTwo));
 		assertTrue(ResumeMario.contains(meetingToCreateOne));

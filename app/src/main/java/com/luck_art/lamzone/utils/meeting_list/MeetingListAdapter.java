@@ -50,7 +50,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 	@NonNull
 	@NotNull
 	@Override
-	public ListHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+	public ListHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) { // Créer la cellule
 
 		View viewMeetingList = LayoutInflater.from(parent.getContext()).inflate(R.layout.meeting_list, parent, false); // on invoque le fichier xml meeting_list
 
@@ -59,7 +59,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 	}
 
 	@Override
-	public void onBindViewHolder(@NonNull ListHolder holder, int position) {
+	public void onBindViewHolder(@NonNull ListHolder holder, int position) { // Remplir la cellule avec les infos
 
 		Meeting m = dataSet.get(position);
 

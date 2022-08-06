@@ -40,38 +40,20 @@ public class Meeting implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getHour() {
 		return hour;
 	}
 
-	public void setHour(String hour) { this.hour = hour; }
-
 	public String getPlace() {
 		return place;
-	}
-
-	public void setPLace() {
-		this.place = place;
 	}
 
 	public String getTopic() {
 		return topic;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
 	public List<String> getMail() {
 		return mails;
-	}
-
-	public void setMail(List<String> mails) {
-		this.mails = mails;
 	}
 
 
@@ -80,13 +62,11 @@ public class Meeting implements Serializable {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Meeting meeting = (Meeting) o;
-		return Objects.equals(id, meeting.id);
+		return id == meeting.id && Objects.equals(hour, meeting.hour) && Objects.equals(place, meeting.place) && Objects.equals(topic, meeting.topic) && Objects.equals(mails, meeting.mails);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id, hour, place, topic, mails);
 	}
-
-
 }

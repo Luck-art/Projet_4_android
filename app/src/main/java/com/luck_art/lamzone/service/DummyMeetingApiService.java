@@ -45,16 +45,6 @@ public class DummyMeetingApiService implements MeetingApiService {
 	}
 
 	@Override
-	public List<Meeting> filterByRoom() {
-		return meetings;
-	}
-
-	@Override
-	public List<Meeting> filterByTime() {
-		return meetings;
-	}
-
-	@Override
 	public void clear(){
 		meetings.clear();
 	}
