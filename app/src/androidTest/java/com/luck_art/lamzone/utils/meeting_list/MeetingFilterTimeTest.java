@@ -280,15 +280,12 @@ public class MeetingFilterTimeTest {
 		actionMenuItemView.perform(click());
 
 		ViewInteraction textView = onView(
-				allOf(withId(androidx.appcompat.R.id.title), withText("Heures"),
+				allOf (withText("Heures"),
 						isDisplayed()));
 		textView.perform(click());
 
 		DataInteraction appCompatTextView = onData(anything())
-				.inAdapterView(allOf(withId(androidx.appcompat.R.id.select_dialog_listview),
-						childAtPosition(
-								withId(androidx.appcompat.R.id.contentPanel),
-								0)))
+				.inAdapterView(allOf(withId(R.id.select_dialog_listview)))
 				.atPosition(2);
 		appCompatTextView.perform(click());
 

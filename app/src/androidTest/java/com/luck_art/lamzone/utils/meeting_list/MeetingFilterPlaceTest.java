@@ -215,12 +215,6 @@ public class MeetingFilterPlaceTest {
 
 		ViewInteraction materialTextView6 = onView(
 				allOf(withId(R.id.saveEmail),
-						childAtPosition(
-								allOf(withId(R.id.textInputLayout4),
-										childAtPosition(
-												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-												5)),
-								1),
 						isDisplayed()));
 		materialTextView6.perform(click());
 
@@ -235,12 +229,12 @@ public class MeetingFilterPlaceTest {
 		actionMenuItemView.perform(click());
 
 		ViewInteraction textView = onView(
-				allOf(withId(androidx.appcompat.R.id.title), withText("Salles"),
+				allOf(withId(R.id.title), withText("Salles"),
 						isDisplayed()));
 		textView.perform(click());
 
 		DataInteraction appCompatTextView = onData(anything())
-				.inAdapterView(allOf(withId(androidx.appcompat.R.id.select_dialog_listview)
+				.inAdapterView(allOf(withId(R.id.select_dialog_listview)
 						))
 				.atPosition(0);
 		appCompatTextView.perform(click());
