@@ -118,13 +118,16 @@ public class AddMeetingActivity extends AppCompatActivity {
 		}
 
 		void addMeeting() {
+
+
 			String hour = this.hour.getText().toString().trim();
+			if (hour.equals("")) {
+				Snackbar.make(this.hour, "Veuillez mentionner une heure pour votre réunion", Snackbar.LENGTH_LONG).show();
+				return;
+			}
 			int hourInt = Integer.parseInt(hour);
 			if (hourInt < 8 || hourInt > 20) {
 				Snackbar.make(this.hour, "Veuillez entrer une heure entre 8h00 et 12h00 ou entre 14h00 et 20h00", Snackbar.LENGTH_LONG).show();
-				return;
-			} else if (hour.equals("")) {
-				Snackbar.make(this.hour, "Veuillez mentionner une heure pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
 			}
 			String place = this.place.getSelectedItem().toString().trim();

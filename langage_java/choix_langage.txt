@@ -1,0 +1,12 @@
+				
+				Choix du langage Java pour l'application Lamzone
+
+J'ai choisie d'utiliser le langage Java pour développer cette application car le langage Java est un langage de programmation populaire et est utilisé
+
+ à grande échelle dans le monde entier pour le développement d'applications. Il présente des avantages tels que le multithreading, l'extensibilité,
+
+ la gestion de la mémoire, la haute sécurité, le support communautaire, etc. De plus Sa robustesse et sa polyvalence répondent avec succès à tous
+
+ les types de besoins commerciaux.
+
+Pour finir, si ce projet doit être repris par un autre développeur, l'entreprise pourra trouver facilement un profil connaissant le java.
