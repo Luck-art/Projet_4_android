@@ -15,6 +15,7 @@ import com.luck_art.lamzone.model.Meeting;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +123,9 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
 
 			topicName.setText(meeting.getTopic());
-			hourName.setText(meeting.getHour() + " -");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'à' hh:mm");
+			String formatted = formatter.format(meeting.date);
+			hourName.setText(formatted + " -");
 			imageTrash.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

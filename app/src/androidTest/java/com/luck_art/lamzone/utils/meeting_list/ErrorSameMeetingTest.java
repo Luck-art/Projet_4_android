@@ -67,7 +67,7 @@ public class ErrorSameMeetingTest {
 		appCompatCheckedTextView.perform(click());
 
 		ViewInteraction textInputEditText = onView(
-				allOf(withId(R.id.hour),
+				allOf(withId(R.id.date),
 						isDisplayed()));
 		textInputEditText.perform(replaceText("11"), closeSoftKeyboard());
 
@@ -119,7 +119,7 @@ public class ErrorSameMeetingTest {
 		appCompatCheckedTextView2.perform(click());
 
 		ViewInteraction textInputEditText5 = onView(
-				allOf(withId(R.id.hour),
+				allOf(withId(R.id.date),
 						isDisplayed()));
 		textInputEditText5.perform(replaceText("11"), closeSoftKeyboard());
 

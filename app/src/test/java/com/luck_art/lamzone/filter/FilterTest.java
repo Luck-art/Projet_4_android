@@ -21,11 +21,11 @@ public class FilterTest {
 
 		List<Meeting> meetingsTestList = new ArrayList<>();
 
-		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com"));; // Index 0 out of bounds for length 0
+		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration);; // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateOne);
-		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"));; // Index 0 out of bounds for length 0
+		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration);; // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateTwo);
-		Meeting meetingToCreateThree = new Meeting(3,"Mario","15","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"));; // Index 0 out of bounds for length 0
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","15","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration);; // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
 		List<Meeting> ResultMario = Filter.filterByRoom(meetingsTestList, "Mario");
@@ -39,11 +39,11 @@ public class FilterTest {
 
 		List<Meeting> meetingsTestList = new ArrayList<>();
 
-		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateOne);
-		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateTwo);
-		Meeting meetingToCreateThree = new Meeting(3,"Mario","15","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","15","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
 		List<Meeting> ResumeMario = Filter.filterByRoom(meetingsTestList, null);
@@ -58,11 +58,11 @@ public class FilterTest {
 
 		List<Meeting> meetingsTestList = new ArrayList<>();
 
-		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateOne);
-		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateTwo);
-		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
 		List<Meeting> ResumeMario = Filter.filterByTime(meetingsTestList, "11");
@@ -78,11 +78,11 @@ public class FilterTest {
 
 		List<Meeting> meetingsTestList = new ArrayList<>();
 
-		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateOne = new Meeting(1,"Mario","11","New project", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateOne);
-		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateTwo);
-		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com")); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","14","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"), meetingDuration); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
 		List<Meeting> ResumeMario = Filter.filterByTime(meetingsTestList, null);

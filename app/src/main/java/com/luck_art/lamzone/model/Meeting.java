@@ -1,15 +1,18 @@
 package com.luck_art.lamzone.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Meeting implements Serializable {
 
 
-	private long id;
+	public Date date;
 
-	public String hour;
+	public int duringMinutes;
+
+	private long id;
 
 	public String place;
 
@@ -19,29 +22,25 @@ public class Meeting implements Serializable {
 
 
 	/** Constructor
-     * @param id
-     * @param hour
-	 * @param place
+	 * @param id
+		* @param place
 	 * @param topic
 	 * @param mails
-     */
+	 * @param meetingDuration
+	 */
 
-	public Meeting(long id, String place, String hour,
-	               String topic, List<String> mails) {
+	public Meeting(long id, String place,
+	               String topic, List<String> mails, Date date, String meetingDuration) {
 		this.id = id;
-		this.hour = hour;
 		this.place = place;
 		this.topic = topic;
 		this.mails = mails;
+		this.date = date;
 	}
 
 
 	public long getId() {
 		return id;
-	}
-
-	public String getHour() {
-		return hour;
 	}
 
 	public String getPlace() {
@@ -62,11 +61,11 @@ public class Meeting implements Serializable {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Meeting meeting = (Meeting) o;
-		return id == meeting.id && Objects.equals(hour, meeting.hour) && Objects.equals(place, meeting.place) && Objects.equals(topic, meeting.topic) && Objects.equals(mails, meeting.mails);
+		return id == meeting.id && Objects.equals(date, meeting.date) && Objects.equals(place, meeting.place) && Objects.equals(topic, meeting.topic) && Objects.equals(mails, meeting.mails);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, hour, place, topic, mails);
+		return Objects.hash(id, date, place, topic, mails);
 	}
 }

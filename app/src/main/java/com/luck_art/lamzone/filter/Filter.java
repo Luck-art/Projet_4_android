@@ -21,7 +21,7 @@ public class Filter {
 	public static List<Meeting> filterByTime(List<Meeting> allMeetings, String hourFilter) {
 		List<Meeting> filteredMeetings = new ArrayList<>();
 		for (Meeting meeting : allMeetings) {
-			if (hourFilter == null || meeting.hour.equals(hourFilter)) {
+			if (hourFilter == null || meeting.date.equals(hourFilter)) {
 				filteredMeetings.add(meeting);
 			}
 		}

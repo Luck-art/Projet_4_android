@@ -1,13 +1,18 @@
 package com.luck_art.lamzone.utils.meeting_list;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,14 +28,19 @@ import com.luck_art.lamzone.di.DI;
 import com.luck_art.lamzone.model.Meeting;
 import com.luck_art.lamzone.service.MeetingApiService;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
 public class AddMeetingActivity extends AppCompatActivity {
 
+		Spinner duration;
 		Spinner place;
-		TextInputEditText hour;
+		TextView date;
 		TextInputEditText topic;
 		TextInputEditText mail;
 		MaterialButton register_meeting;
@@ -42,15 +52,18 @@ public class AddMeetingActivity extends AppCompatActivity {
 		LinearLayout emailsGroup;
 
 		private List<String> emailsEntrees = new ArrayList<>();
+		private Date meetingTime;
+		private Duration meetingDuration;
 
-		@SuppressLint("WrongViewCast")
+	@SuppressLint("WrongViewCast")
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.create_meeting);
 
-			place = findViewById(R.id.place);
-			hour = findViewById(R.id.hour);
+			place = findViewById(R.id.spinnerPlace);
+			date = findViewById(R.id.buttonHour);
+			duration = findViewById(R.id.spinnerDuration);
 			topic = findViewById(R.id.topic);
 			mail = findViewById(R.id.mail);
 			register_meeting = findViewById(R.id.register_meeting);
@@ -59,6 +72,12 @@ public class AddMeetingActivity extends AppCompatActivity {
 
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 			mApiService = DI.getMeetingApiService();
+			date.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					askDate();
+				}
+			});
 
 			register_meeting.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -75,13 +94,24 @@ public class AddMeetingActivity extends AppCompatActivity {
 			NamePlace.add("Luigi");
 			NamePlace.add("Warrio");
 
-			// Create an ArrayAdapter using the string array and a default spinner layout
-			ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,
-					android.R.layout.simple_spinner_item, NamePlace);
-// Specify the layout to use when the list of choices appears
-			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-			place.setAdapter(adapter);
+
+		// Place ArrayAdapter
+		ArrayAdapter<CharSequence> adapterPlace = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, NamePlace);
+		adapterPlace.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		place.setAdapter(adapterPlace);
+
+		List<String> NameDuration = new ArrayList<String>();
+		NameDuration.add("15 min");
+		NameDuration.add("30 min");
+		NameDuration.add("45 min");
+		NameDuration.add("60 min");
+
+		// Duration ArrayAdapter
+		ArrayAdapter<CharSequence> adapterDuration = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, NameDuration);
+		adapterDuration.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		duration.setAdapter(adapterDuration);
 
 
 			boutonSaveEmail.setOnClickListener(new View.OnClickListener() {
@@ -117,17 +147,46 @@ public class AddMeetingActivity extends AppCompatActivity {
 			return super.onOptionsItemSelected(item);
 		}
 
+	private void askDate() {
+		Calendar now = Calendar.getInstance();
+
+		new DatePickerDialog(AddMeetingActivity.this, 0, new DatePickerDialog.OnDateSetListener() {
+			@Override
+			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+				askTime(year, month, dayOfMonth);
+			}
+		}, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)).show();
+	}
+
+	private void askTime(int year, int month, int dayOfMonth) {
+		new TimePickerDialog(AddMeetingActivity.this, new TimePickerDialog.OnTimeSetListener() {
+			@Override
+			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(Calendar.YEAR, year);
+				calendar.set(Calendar.MONTH, month);
+				calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+				calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+				calendar.set(Calendar.MINUTE, minute);
+
+				meetingTime = calendar.getTime();
+
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'à' hh:mm");
+				String formatted = formatter.format(meetingTime);
+				date.setText(formatted);
+			}
+		}, 12, 00, true).show();
+	}
+
 		void addMeeting() {
-
-
-			String hour = this.hour.getText().toString().trim();
-			if (hour.equals("")) {
-				Snackbar.make(this.hour, "Veuillez mentionner une heure pour votre réunion", Snackbar.LENGTH_LONG).show();
+		
+			if (meetingTime == null) {
+				Snackbar.make(this.date, "Veuillez mentionner une heure pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
 			}
-			int hourInt = Integer.parseInt(hour);
-			if (hourInt < 8 || hourInt > 20) {
-				Snackbar.make(this.hour, "Veuillez entrer une heure entre 8h00 et 12h00 ou entre 14h00 et 20h00", Snackbar.LENGTH_LONG).show();
+			String meetingDuration = this.duration.getSelectedItem().toString().trim();
+			if (duration.equals("")) {
+				Snackbar.make(this.duration, "Veuillez mentionner une durée pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
 			}
 			String place = this.place.getSelectedItem().toString().trim();
@@ -148,9 +207,10 @@ public class AddMeetingActivity extends AppCompatActivity {
 			Meeting meeting = new Meeting(
 					System.currentTimeMillis(),
 					place,
-					hour,
 					topic,
-					emailsEntrees
+					emailsEntrees,
+					meetingTime,
+					meetingDuration
 			);
 			boolean succesMeetingCreation = mApiService.createMeeting(meeting);
 			if (succesMeetingCreation) {

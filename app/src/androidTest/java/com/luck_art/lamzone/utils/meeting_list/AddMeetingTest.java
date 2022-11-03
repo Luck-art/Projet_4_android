@@ -67,7 +67,7 @@ public class AddMeetingTest {
 		appCompatCheckedTextView.perform(click());
 
 		ViewInteraction textInputEditText = onView(
-				allOf(withId(R.id.hour),
+				allOf(withId(R.id.date),
 						isDisplayed()));
 		textInputEditText.perform(replaceText("11"), closeSoftKeyboard());
 
