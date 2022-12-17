@@ -19,9 +19,13 @@ public class Filter {
 	}
 
 	public static List<Meeting> filterByTime(List<Meeting> allMeetings, String hourFilter) {
+		int convertHour = 0;
+		if( hourFilter != null) {
+			convertHour = Integer.parseInt(hourFilter);
+		}
 		List<Meeting> filteredMeetings = new ArrayList<>();
 		for (Meeting meeting : allMeetings) {
-			if (hourFilter == null || meeting.date.equals(hourFilter)) {
+			if (hourFilter == null || meeting.date.getHours() >= convertHour) {
 				filteredMeetings.add(meeting);
 			}
 		}

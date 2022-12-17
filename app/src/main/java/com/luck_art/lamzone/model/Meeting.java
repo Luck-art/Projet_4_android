@@ -30,12 +30,13 @@ public class Meeting implements Serializable {
 	 */
 
 	public Meeting(long id, String place,
-	               String topic, List<String> mails, Date date, String meetingDuration) {
+	               String topic, List<String> mails, Date date, int duringMinutes) {
 		this.id = id;
 		this.place = place;
 		this.topic = topic;
 		this.mails = mails;
 		this.date = date;
+		this.duringMinutes = duringMinutes;
 	}
 
 

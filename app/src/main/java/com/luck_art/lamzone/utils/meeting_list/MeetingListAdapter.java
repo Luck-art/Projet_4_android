@@ -123,7 +123,7 @@ public class MeetingListAdapter extends RecyclerView.Adapter<MeetingListAdapter.
 
 
 			topicName.setText(meeting.getTopic());
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'à' hh:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'à' H:mm");
 			String formatted = formatter.format(meeting.date);
 			hourName.setText(formatted + " -");
 			imageTrash.setOnClickListener(new View.OnClickListener() {

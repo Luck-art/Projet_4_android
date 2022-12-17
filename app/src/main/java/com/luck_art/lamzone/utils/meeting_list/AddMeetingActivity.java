@@ -179,7 +179,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 	}
 
 		void addMeeting() {
-		
+
 			if (meetingTime == null) {
 				Snackbar.make(this.date, "Veuillez mentionner une heure pour votre réunion", Snackbar.LENGTH_LONG).show();
 				return;
@@ -210,7 +210,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 					topic,
 					emailsEntrees,
 					meetingTime,
-					meetingDuration
+					Integer.parseInt(meetingDuration)
 			);
 			boolean succesMeetingCreation = mApiService.createMeeting(meeting);
 			if (succesMeetingCreation) {
