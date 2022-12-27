@@ -42,24 +42,28 @@ public class DummyMeetingApiService implements MeetingApiService {
 		Date meetingStart = meeting.date;
 		Date meetingEnd = getEndDate(meetingStart, other.duringMinutes);
 
-		//other.startDate < `meeting.startDate` < other.date + duree
-		if(otherStart.before(meetingStart) && meetingStart.before(otherEnd)) {
+		//other.startDate < meeting.startDate < other.date + duree
+		if(beforeOrEquals(otherStart, meetingStart) && beforeOrEquals(meetingStart, otherEnd)) {
 			return true;
 		}
-		//other.startDate < `meeting.endDate` < other.date + duree
-		if(otherStart.before(meetingEnd) && meetingEnd.before(otherEnd)) {
+		//other.startDate < meeting.endDate < other.date + duree
+		if(beforeOrEquals(otherStart, meetingEnd) && beforeOrEquals(meetingEnd, otherEnd)) {
 			return true;
 		}
-		//meeting.startDate < `other.startDate` < meeting.date + duree
-		if(meetingStart.before(otherStart) && otherStart.before(meetingEnd)) {
+		//meeting.startDate < other.startDate < meeting.date + duree
+		if(beforeOrEquals(meetingStart, otherStart) && beforeOrEquals(otherStart, meetingEnd)) {
 			return true;
 		}
-		//meeting.startDate < `other.endDate` < meeting.date + duree
-		if(meetingStart.before(otherEnd) && otherEnd.before(meetingEnd)) {
+		//meeting.startDate < other.endDate < meeting.date + duree
+		if(beforeOrEquals(meetingStart, otherEnd) && beforeOrEquals(otherEnd, meetingEnd)) {
 			return true;
 		}
 
 		return false;
+	}
+
+	boolean beforeOrEquals(Date d1, Date d2) {
+		return d1.before(d2) || d1.equals(d2);
 	}
 
 	/**

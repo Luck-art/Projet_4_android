@@ -10,6 +10,7 @@ import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -33,21 +34,20 @@ import com.luck_art.lamzone.di.DI;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ErrorSameMeetingTest {
+public class MeetingClearFilterTest {
 
 	@Rule
 	public ActivityScenarioRule<MeetingListActivity> mActivityScenarioRule =
 			new ActivityScenarioRule<>(MeetingListActivity.class);
 
 	@Test
-	public void superposeMeetingActivityTest() {
+	public void meetingClearFilterTest() {
 
 		DI.getMeetingApiService().clear();
 
@@ -60,6 +60,23 @@ public class ErrorSameMeetingTest {
 								1),
 						isDisplayed()));
 		floatingActionButton.perform(click());
+
+		ViewInteraction appCompatSpinner = onView(
+				allOf(withId(R.id.spinnerPlace),
+						childAtPosition(
+								allOf(withId(R.id.cardContainer),
+										childAtPosition(
+												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+												1)),
+								1)));
+		appCompatSpinner.perform(scrollTo(), click());
+
+		DataInteraction appCompatCheckedTextView = onData(anything())
+				.inAdapterView(childAtPosition(
+						withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+						0))
+				.atPosition(1);
+		appCompatCheckedTextView.perform(click());
 
 		ViewInteraction materialButton = onView(
 				allOf(withId(R.id.buttonHour), withText("Choisir une heure"),
@@ -89,7 +106,7 @@ public class ErrorSameMeetingTest {
 								3)));
 		materialButton3.perform(scrollTo(), click());
 
-		ViewInteraction appCompatSpinner = onView(
+		ViewInteraction appCompatSpinner2 = onView(
 				allOf(withId(R.id.spinnerDuration),
 						childAtPosition(
 								allOf(withId(R.id.CardDuration),
@@ -97,14 +114,14 @@ public class ErrorSameMeetingTest {
 												withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
 												3)),
 								1)));
-		appCompatSpinner.perform(scrollTo(), click());
+		appCompatSpinner2.perform(scrollTo(), click());
 
-		DataInteraction appCompatCheckedTextView = onData(anything())
+		DataInteraction appCompatCheckedTextView2 = onData(anything())
 				.inAdapterView(childAtPosition(
 						withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
 						0))
-				.atPosition(1);
-		appCompatCheckedTextView.perform(click());
+				.atPosition(3);
+		appCompatCheckedTextView2.perform(click());
 
 		ViewInteraction textInputEditText = onView(
 				allOf(withId(R.id.topic)));
@@ -127,6 +144,17 @@ public class ErrorSameMeetingTest {
 						isDisplayed()));
 		floatingActionButton2.perform(click());
 
+		ViewInteraction appCompatSpinner3 = onView(
+				allOf(withId(R.id.spinnerPlace)));
+		appCompatSpinner3.perform(scrollTo(), click());
+
+		DataInteraction appCompatCheckedTextView3 = onData(anything())
+				.inAdapterView(childAtPosition(
+						withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+						0))
+				.atPosition(2);
+		appCompatCheckedTextView3.perform(click());
+
 		ViewInteraction materialButton5 = onView(
 				allOf(withId(R.id.buttonHour), withText("Choisir une heure")));
 		materialButton5.perform(scrollTo(), click());
@@ -139,24 +167,37 @@ public class ErrorSameMeetingTest {
 				allOf(withId(android.R.id.button1), withText("OK")));
 		materialButton7.perform(scrollTo(), click());
 
-		ViewInteraction appCompatSpinner2 = onView(
+		ViewInteraction appCompatSpinner4 = onView(
 				allOf(withId(R.id.spinnerDuration)));
-		appCompatSpinner2.perform(scrollTo(), click());
+		appCompatSpinner4.perform(scrollTo(), click());
 
-		DataInteraction appCompatCheckedTextView2 = onData(anything())
+		DataInteraction appCompatCheckedTextView4 = onData(anything())
 				.inAdapterView(childAtPosition(
 						withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
 						0))
 				.atPosition(1);
-		appCompatCheckedTextView2.perform(click());
+		appCompatCheckedTextView4.perform(click());
 
 		ViewInteraction textInputEditText3 = onView(
 				allOf(withId(R.id.topic)));
-		textInputEditText3.perform(scrollTo(), replaceText("aaa"), closeSoftKeyboard());
+		textInputEditText3.perform(scrollTo(), replaceText("ddd"), closeSoftKeyboard());
 
 		ViewInteraction textInputEditText4 = onView(
 				allOf(withId(R.id.mail)));
-		textInputEditText4.perform(scrollTo(), replaceText("mario@gmail.com"), closeSoftKeyboard());
+		textInputEditText4.perform(scrollTo(), replaceText("wa"), closeSoftKeyboard());
+
+		ViewInteraction textInputEditText5 = onView(
+				allOf(withId(R.id.mail), withText("wa")));
+		textInputEditText5.perform(scrollTo(), click());
+
+		ViewInteraction textInputEditText6 = onView(
+				allOf(withId(R.id.mail), withText("wa")));
+		textInputEditText6.perform(scrollTo(), replaceText("warrio@gmail.com"));
+
+		ViewInteraction textInputEditText7 = onView(
+				allOf(withId(R.id.mail), withText("warrio@gmail.com"),
+						isDisplayed()));
+		textInputEditText7.perform(closeSoftKeyboard());
 
 		ViewInteraction appCompatImageButton2 = onView(
 				allOf(withId(R.id.saveEmail)));
@@ -166,11 +207,49 @@ public class ErrorSameMeetingTest {
 				allOf(withId(R.id.register_meeting), withText("Programmer")));
 		materialButton8.perform(scrollTo(), click());
 
-		ViewInteraction button = onView(
-				allOf(withId(R.id.register_meeting), withText("PROGRAMMER"),
-						withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.ScrollView.class))),
+		ViewInteraction actionMenuItemView = onView(
+				allOf(withId(R.id.filtre), withContentDescription("Filtres"),
 						isDisplayed()));
-		button.check(matches(isDisplayed()));
+		actionMenuItemView.perform(click());
+
+		ViewInteraction textView = onView(
+				allOf(withId(androidx.appcompat.R.id.title), withText("Heures"),
+						isDisplayed()));
+		textView.perform(click());
+
+		DataInteraction appCompatTextView = onData(anything())
+				.inAdapterView(allOf(withId(androidx.appcompat.R.id.select_dialog_listview),
+						childAtPosition(
+								withId(androidx.appcompat.R.id.contentPanel),
+								0)))
+				.atPosition(4);
+		appCompatTextView.perform(click());
+
+		ViewInteraction actionMenuItemView2 = onView(
+				allOf(withId(R.id.filtre), withContentDescription("Filtres"),
+						childAtPosition(
+								childAtPosition(
+										withId(androidx.appcompat.R.id.action_bar),
+										1),
+								0),
+						isDisplayed()));
+		actionMenuItemView2.perform(click());
+
+		ViewInteraction textView2 = onView(
+				allOf(withId(androidx.appcompat.R.id.title), withText("Clear"),
+						childAtPosition(
+								childAtPosition(
+										withId(androidx.appcompat.R.id.content),
+										0),
+								0),
+						isDisplayed()));
+		textView2.perform(click());
+
+		ViewInteraction recyclerView = onView(
+				allOf(withId(R.id.recycler_meeting_list),
+						withParent(withParent(withId(android.R.id.content))),
+						isDisplayed()));
+		recyclerView.check(matches(isDisplayed()));
 	}
 
 	private static Matcher<View> childAtPosition(

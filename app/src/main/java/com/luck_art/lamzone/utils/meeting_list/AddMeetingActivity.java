@@ -210,7 +210,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 					topic,
 					emailsEntrees,
 					meetingTime,
-					Integer.parseInt(meetingDuration)
+					Integer.parseInt(meetingDuration.replace(" min", ""))
 			);
 			boolean succesMeetingCreation = mApiService.createMeeting(meeting);
 			if (succesMeetingCreation) {

@@ -69,11 +69,11 @@ public class FilterTest {
 		meetingsTestList.add(meetingToCreateOne);
 		Meeting meetingToCreateTwo = new Meeting(2,"Luigi","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"),date(14), 30); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateTwo);
-		Meeting meetingToCreateThree = new Meeting(3,"Mario","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"),date(14), 30); // Index 0 out of bounds for length 0
+		Meeting meetingToCreateThree = new Meeting(3,"Mario","New...", Collections.singletonList("mario@gmail.com, luigi@gmail.com"),date(9), 30); // Index 0 out of bounds for length 0
 		meetingsTestList.add(meetingToCreateThree);
 
 		List<Meeting> ResumeMario = Filter.filterByTime(meetingsTestList, "11");
-		assertFalse(ResumeMario.contains(meetingToCreateTwo));
+		assertTrue(ResumeMario.contains(meetingToCreateTwo));
 		assertTrue(ResumeMario.contains(meetingToCreateOne));
 		assertFalse(ResumeMario.contains(meetingToCreateThree));
 
