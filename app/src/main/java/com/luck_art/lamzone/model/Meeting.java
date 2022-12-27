@@ -21,13 +21,7 @@ public class Meeting implements Serializable {
 	private List<String> mails;
 
 
-	/** Constructor
-	 * @param id
-		* @param place
-	 * @param topic
-	 * @param mails
-	 * @param meetingDuration
-	 */
+
 
 	public Meeting(long id, String place,
 	               String topic, List<String> mails, Date date, int duringMinutes) {

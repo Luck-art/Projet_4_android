@@ -10,10 +10,7 @@ public class DI {
 
     private static MeetingApiService service = new DummyMeetingApiService();
 
-    /**
-     * Get an instance on @{@link MeetingApiService}
-     * @return
-     */
+
     public static MeetingApiService getMeetingApiService() {
         return service;
     }
